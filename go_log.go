@@ -35,6 +35,14 @@ var (
 )
 
 func init() {
+
+	if _, err := os.Stat("logs"); os.IsNotExist(err) {
+		os.Mkdir("logs", os.ModeDir)
+		fmt.Println("go_log pkg: logs folder created, logs files will be created")
+	} else {
+		fmt.Println("go_log pkg: logs folder exist, logs will be appended")
+	}
+
 	traceFile, err := os.OpenFile("logs/trace.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	infoFile, err := os.OpenFile("logs/info.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	warningFile, err := os.OpenFile("logs/warning.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
