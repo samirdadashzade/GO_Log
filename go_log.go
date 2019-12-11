@@ -24,13 +24,13 @@ var (
 	//LogTrace is for trace logging
 	LogTrace *log.Logger
 
-	//LogInfo is for trace logging
+	//LogInfo is for info logging
 	LogInfo *log.Logger
 
-	//LogWarning is for trace logging
+	//LogWarning is for warning logging
 	LogWarning *log.Logger
 
-	//LogError is for trace logging
+	//LogError is for error logging
 	LogError *log.Logger
 )
 
@@ -59,7 +59,8 @@ func init() {
 	LogError = log.New(errorFile, "Error: ", log.Ldate|log.Lmicroseconds|log.Llongfile)
 }
 
-//Log is used for direct logging
+//Log is used for logging with level
+//For simple logging use Log* methods
 func Log(logLevel string, message string) {
 	switch logLevel {
 	case Trace:
